@@ -1,0 +1,17 @@
+SELECT
+   orders.Date AS order_date,
+   cats.CategoryName AS category_name,
+   prod.ProdName AS product_name,
+   prod.Price AS product_price,
+   orders.Quantity AS order_qty,
+   (prod.Price * orders.Quantity) AS total_sales,
+   cust.CustomerEmail AS cust_email,
+   cust.CustomerCity AS cust_city
+
+
+FROM
+   skilled-curve-418213.Muamalat.Orders as orders
+   Left JOIN skilled-curve-418213.Muamalat.Products as prod ON orders.ProdNumber = prod.ProdNumber
+   Left JOIN skilled-curve-418213.Muamalat.Customers as cust ON orders.CustomerID = cust.CustomerID
+   Left JOIN skilled-curve-418213.Muamalat.ProductCategory as cats ON prod.Category = cats.CategoryID
+order by 1
